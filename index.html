@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Panel de Rendimiento</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <!-- iPhone / iPad -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Panel Dueño">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #f4f6f9; font-family: system-ui, sans-serif; }
+    #cargando {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+      background: #f4f6f9; z-index: 5;
+    }
+    .spinner {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 4px solid #e0e0e0; border-top-color: #4f46e5;
+      animation: girar 0.9s linear infinite;
+    }
+    @keyframes girar { to { transform: rotate(360deg); } }
+    #cargando p { color: #6c757d; font-size: 14px; font-weight: 600; }
+    iframe { width: 100%; height: 100%; border: none; display: block; }
+  </style>
+</head>
+<body>
+
+  <div id="cargando">
+    <div class="spinner"></div>
+    <p>Cargando panel...</p>
+  </div>
+
+  <!-- ⚙️ PEGA AQUÍ LA URL DE TU WEB APP DEL DASHBOARD (la que termina en /exec) -->
+  <iframe id="app"
+    src="PEGA_AQUI_LA_URL_DEL_DASHBOARD"
+    allow="fullscreen"
+    onload="document.getElementById('cargando').style.display='none'">
+  </iframe>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
