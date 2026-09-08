@@ -3,50 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Panel de Rendimiento</title>
-
+  <title>Mi Gasera — Panel</title>
+ 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4f46e5">
-  <link rel="icon" type="image/png" href="icon-192.png">
+  <meta name="theme-color" content="#0F2A47">
+  <link rel="icon" type="image/png" href="icono-192.png">
   <!-- iPhone / iPad -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Panel Dueño">
-  <link rel="apple-touch-icon" href="icon-192.png">
-
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mi Gasera">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+ 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; background: #f4f6f9; font-family: system-ui, sans-serif; }
+    html, body { height: 100%; background: #0F2A47; font-family: system-ui, sans-serif; }
     #cargando {
       position: fixed; inset: 0; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 14px;
-      background: #f4f6f9; z-index: 5;
+      align-items: center; justify-content: center; gap: 16px;
+      background: #0F2A47; z-index: 5;
     }
+    #cargando img { width: 88px; height: 88px; border-radius: 20px; }
     .spinner {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 4px solid #e0e0e0; border-top-color: #4f46e5;
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.18); border-top-color: #00A5B5;
       animation: girar 0.9s linear infinite;
     }
     @keyframes girar { to { transform: rotate(360deg); } }
-    #cargando p { color: #6c757d; font-size: 14px; font-weight: 600; }
-    iframe { width: 100%; height: 100%; border: none; display: block; }
+    #cargando p { color: #F4F6F8; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; }
+    iframe { width: 100%; height: 100%; border: none; display: block; background: #F4F6F8; }
   </style>
 </head>
 <body>
-
+ 
   <div id="cargando">
+    <img src="icono-192.png" alt="Mi Gasera">
     <div class="spinner"></div>
     <p>Cargando panel...</p>
   </div>
-
-  <!-- ⚙️ PEGA AQUÍ LA URL DE TU WEB APP DEL DASHBOARD (la que termina en /exec) -->
+ 
+  <!-- ⚙️ EN LA LÍNEA DE ABAJO VA TU URL /exec (cópiala de tu index actual ANTES de reemplazar) -->
   <iframe id="app"
     src="https://script.google.com/macros/s/AKfycbwdmnIdPqHXpsMhQKzsITPpcvCsEB97L70J_JfbuOVuD_83ttXjHklROi7ltTCNQOaHxA/exec"
     allow="fullscreen"
     onload="document.getElementById('cargando').style.display='none'">
   </iframe>
-
+ 
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
@@ -54,3 +56,4 @@
   </script>
 </body>
 </html>
+ 
